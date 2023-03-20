@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Loader from '@/components/Loader'
 
 export default function Home() {
   return (
@@ -11,35 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1>
-          Links
-        </h1>
-        <section>
-          <h2>
-            Simple Link
-          </h2>
-          <Link
-            href="simple-link"
-          >
-            This is a simple link
-          </Link>
-        </section>
-        <section>
-          <h2>
-            More fancy link
-          </h2>
-          <Link
-            prefetch={false}
-            href={{
-              pathname: '/[username]',
-              query: {
-                username: 'maxsonyang'
-              }
-            }}
-          >
-            It&apos;s so fancy!
-          </Link>
-        </section>
+        <Loader show />
       </main>
     </>
   )

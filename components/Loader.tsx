@@ -4,8 +4,8 @@ type LoaderProps = {
 
 const Loader = ({ show }: LoaderProps) => {
   return (
-    show 
-      ? <div></div>
+    show
+      ? <div className='loader'></div>
       : null
   )
 }
