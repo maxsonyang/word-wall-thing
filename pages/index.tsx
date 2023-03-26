@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 // import Loader from '@/components/Loader'
+import toast from 'react-hot-toast';
 
 export default function Home() {
   return (
@@ -13,6 +14,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <button onClick={() => toast.success('Success!')}>
+          Success!
+        </button>
       </main>
     </>
   )
