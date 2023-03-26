@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Loader from '@/components/Loader'
+import Navbar from '@/components/Navbar'
+// import Loader from '@/components/Loader'
 
 export default function Home() {
   return (
@@ -12,7 +13,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Loader show />
       </main>
     </>
   )
