@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useContext } from "react";
+import { UserContext } from "@/lib/context";
 
 const Navbar = () => {
   // temporarily ignoring.
   // @ts-ignore
-  const { user, username } = { user: true, username: true };
+  const { user, username } = useContext(UserContext);
 
   return (
     <nav className="navbar">
