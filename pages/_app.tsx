@@ -12,12 +12,14 @@ import { Toaster } from 'react-hot-toast';
 
 export default function App({ Component, pageProps }: AppProps) {
 
-  const { user, username } = useUserData()
+  const userData = useUserData()
 
-  // @ts-ignore
-  return <UserContext.Provider value={{ user, username }}>
-    <Navbar />
-    <Component {...pageProps} />
-    <Toaster />
-  </UserContext.Provider>
+  return (
+    // @ts-ignore
+    <UserContext.Provider value={userData}>
+      <Navbar />
+      <Component {...pageProps} />
+      <Toaster />
+    </UserContext.Provider>
+  )
 }
