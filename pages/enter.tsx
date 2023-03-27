@@ -1,6 +1,12 @@
 import { auth, googleAuthProvider } from '../lib/firebase'
+import Image from 'next/image';
 
-const Enter = ({ user, username }) => {
+type EntryProps = {
+  user: 'string',
+  username: 'string'
+}
+
+const Enter = ({ user, username }: EntryProps) => {
 
   /**
    * Shows components depending on three cases:
@@ -22,14 +28,18 @@ const Enter = ({ user, username }) => {
 const SignInButton = () => {
 
   const signInWithGoogle = async () => {
-    await auth.signInWith
+    await auth.signInWithPopup(googleAuthProvider);
   }
 
-  return <></>;
+  return <button onClick={signInWithGoogle}>
+    <Image width="50" height="50" alt="sign in with google" src="/google.png" />
+  </button>
 };
 
 const SignOutButton = () => {
-  return <></>;
+  return <button onClick={() => auth.signOut()}>
+    Sign Out
+  </button>
 };
 
 const UserNameForm = () => {
