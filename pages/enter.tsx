@@ -9,7 +9,9 @@ type EntryProps = {
   username: 'string'
 }
 
-const Enter = ({ user, username }: EntryProps) => {
+const Enter = (props) => {
+  
+  const { user, username } = useContext(UserContext);
 
   /**
    * Shows components depending on three cases:
@@ -73,7 +75,26 @@ const UserNameForm = () => {
     checkUserName(formValue)
   }, [formValue, checkUserName])
 
-  const onSubmit = () => { };
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const userDoc = firestore.doc(`users/${user.uid}`);
+    const usernameDoc = firestore.doc(`usernames/${formValue}`);
+
+    await createUserEntry(userDoc, usernameDoc);
+  };
+
+  const createUserEntry = async (userDoc, usernameDoc) => {
+    const batch = firestore.batch();
+    batch.set(userDoc, {
+      username: formValue, 
+      photoUrl: user?.photoURL,
+      displayName: user.displayName,
+    })
+    batch.set(usernameDoc, { uid: user.uid });
+
+    await batch.commit();
+  }
 
   const onChange = (e) => {
     const val = e.target.value.toLowerCase();
@@ -108,15 +129,16 @@ const UserNameForm = () => {
           onChange={onChange} />
 
         <button type="submit" disabled={!isValid}>
+          Choose
         </button>
         <h3>Debug State</h3>
-          <div>
-            Username: {formValue}
-            <br />
-            Loading: {loading.toString()}
-            <br />
-            Username Valid: {isValid.toString()}
-          </div>
+        <div>
+          Username: {formValue}
+          <br />
+          Loading: {loading.toString()}
+          <br />
+          Username Valid: {isValid.toString()}
+        </div>
       </form>
     </section>
   )
