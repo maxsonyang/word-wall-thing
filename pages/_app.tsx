@@ -2,7 +2,7 @@
 import Navbar from '@/components/Navbar'
 import '@/styles/globals.scss'
 import { UserContext } from '@/lib/context';
-import { firestore } from '@/lib/firebase';
+// import { firestore } from '@/lib/firebase';
 import { useUserData } from '@/lib/hooks';
 
 // EXTERNAL LIBRARIES
