@@ -10,7 +10,7 @@ type EntryProps = {
 }
 
 const Enter = (props) => {
-  
+
   const { user, username } = useContext(UserContext);
 
   /**
@@ -25,7 +25,8 @@ const Enter = (props) => {
   })
 
   const getAuthProp = () => {
-    if (user) return <SignInButton />
+    console.log(!!user, !username);
+    if (!user) return <SignInButton />
     if (!username) return <UserNameForm />
     return <SignOutButton />
   };
